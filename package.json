@@ -4,6 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
+    "start": "webpack-dev-server --content-base src --mode development --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,18 @@
   "bugs": {
     "url": "https://github.com/aaout/react-tutorial/issues"
   },
-  "homepage": "https://github.com/aaout/react-tutorial#readme"
+  "homepage": "https://github.com/aaout/react-tutorial#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "install": "^0.13.0",
+    "npm": "^6.14.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
 }
