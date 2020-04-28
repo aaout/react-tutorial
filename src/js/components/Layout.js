@@ -5,20 +5,23 @@ import Fooder from "./Fooder";
 export default class Layout extends React.Component {
     constructor() {
         super();
-        this.name = "aaout";
+        this.state = {title: "Before"};
         }
 
     render() {
-    return (
-    <div>
-        <div>
-            <Header />
-        </div>
-        <h1>He is {this.name}!!!</h1>
-        <div>
-            <Fooder />
-        </div>
-    </div>
-    );
+        setTimeout(() => {
+            this.setState({title: "After"});
+        }, 5000);
+
+        // const title = "Welcom aaout";
+
+        return (
+            <div>
+                <Header title={this.state.title}/>
+                <Header title={"title2"}/>
+                {/* {this.state.name} */}
+                <Fooder />
+            </div>
+        );
     }
 }
