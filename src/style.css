@@ -27,7 +27,7 @@ body {
 }
 
 .test{
-    color: red;
+    /* color: red; */
     font-size: 24px;
     margin-top: 50px;
     justify-content: center;
@@ -63,3 +63,7 @@ input[type=checkbox]{
     margin-right: 10px;
     margin-bottom: 12px;
 }
+
+/* .contact{
+    color: #333333;
+} */
