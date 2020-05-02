@@ -27,7 +27,7 @@ export default class Test extends React.Component {
           <TodoItem title="aaout" />
           <TodoItem title="shizo" />
           <TodoItem title="naineji" />
-          <TodoItem title="akisan8" />
+          <TodoItem title="akisan8j" />
         </div>
 
         <h3>三角形の面積: {getTriangle(2, 10)}</h3>
