@@ -1,21 +1,38 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 import ContactCard from "./contact";
+import jokesData from "./jokesData";
+import Joke from "./Joke";
 
 export default class Test extends React.Component {
   render() {
     const firstname = "Ito";
     const lastname = "Eisuke";
+    const getTriangle = (bace, hight) => (bace * hight) / 2;
+    const jokecomponents = jokesData.map((joke) => {
+      return (
+        <Joke
+          key={joke.id}
+          question={joke.question}
+          punchiLine={joke.punchLine}
+        />
+      );
+    });
+    console.log(jokecomponents);
 
     return (
       <div className="test">
         <h1>This is {`${firstname} ${lastname}`}.</h1>
         <div className="todo-list">
-          <TodoItem />
-          <TodoItem />
-          <TodoItem />
-          <TodoItem />
+          <TodoItem title="aaout" />
+          <TodoItem title="shizo" />
+          <TodoItem title="naineji" />
+          <TodoItem title="akisan8" />
         </div>
+
+        <h3>三角形の面積: {getTriangle(2, 10)}</h3>
+
+        <h3>{jokecomponents}</h3>
 
         <div className="contact">
           <ContactCard
