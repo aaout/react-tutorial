@@ -3,6 +3,7 @@ import TodoItem from "./TodoItem";
 import ContactCard from "./contact";
 import jokesData from "./jokesData";
 import Joke from "./Joke";
+import LoggingButton from "./LoggingButton";
 
 export default class Test extends React.Component {
   render() {
@@ -18,7 +19,6 @@ export default class Test extends React.Component {
         />
       );
     });
-    console.log(jokecomponents);
 
     return (
       <div className="test">
@@ -31,6 +31,10 @@ export default class Test extends React.Component {
         </div>
 
         <h3>三角形の面積: {getTriangle(2, 10)}</h3>
+
+        <div>
+          <LoggingButton />
+        </div>
 
         <h3>{jokecomponents}</h3>
 

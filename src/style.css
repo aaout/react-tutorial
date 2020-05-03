@@ -64,6 +64,10 @@ input[type="checkbox"] {
   margin-bottom: 12px;
 }
 
-/* .contact{
-    color: #333333;
-} */
+.setstate {
+  color: #333333;
+  /* justify-content: center;
+  align-items: center; */
+  text-align: center;
+  padding: 30px 20px 0;
+}

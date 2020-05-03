@@ -1,0 +1,35 @@
+import React from "react";
+import todosDatas from "./todosData";
+import TodoItem from "./TodoItem";
+
+export default class CheckBox extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      todos: todosDatas,
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(id) {
+    this.setState((e) => {
+      const updatedTodos = e.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      });
+      return {
+        todos: updatedTodos,
+      };
+    });
+  }
+
+  render() {
+    const todoItems = this.state.todos.map((item) => (
+      <TodoItem key={item.id} item={item} handleChange={this.handleChange} />
+    ));
+
+    return <div className="todo-list">{todoItems}</div>;
+  }
+}
