@@ -30,7 +30,7 @@ export default class Layout extends React.Component {
         {/* <Header title={"title2"}/> */}
         {/* {this.state.name} */}
         <Header />
-        <App />
+        {/* <App /> */}
         <LogForm />
         {/* <Test /> */}
         {/* <ChangeState /> */}

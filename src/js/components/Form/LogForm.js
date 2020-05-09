@@ -15,8 +15,6 @@ export default class LogForm extends Component {
     this.setState({
       [name]: value,
     });
-    console.log(event.target);
-    console.log(this.state.firstName);
   }
 
   render() {
