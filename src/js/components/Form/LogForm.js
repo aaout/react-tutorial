@@ -15,6 +15,8 @@ export default class LogForm extends Component {
     this.setState({
       [name]: value,
     });
+    localStorage.setItem(name, value);
+    console.log(this.state.name);
   }
 
   render() {
@@ -36,7 +38,8 @@ export default class LogForm extends Component {
           onChange={this.handleChange}
         />
         <h1>
-          {this.state.firstName}　{this.state.lastName}
+          {localStorage.getItem("firstName")}　
+          {localStorage.getItem("lastName")}
         </h1>
       </form>
     );

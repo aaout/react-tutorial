@@ -6,37 +6,53 @@ import ChangeState from "./ChangeState";
 import CheckBox from "./CheckBox";
 import App from "./LogButton/App";
 import LogForm from "./Form/LogForm";
+import ToDoListItem from "./ToDoList/ToDoListItem";
 
 export default class Layout extends React.Component {
+  // ToDoListをstateに定義、初期値はlocalStorageから取得または []
   constructor() {
     super();
-    this.state = { title: "Before" };
+    this.state = {
+      todoList: JSON.parse(localStorage.getItem("todoList")) || [],
+    };
   }
 
-  changeTitle(title) {
-    this.setState({ title });
+  // todoList itemの追加
+  addTodo(item, callBack) {
+    // todoList stateに追加
+    this.setState(
+      {
+        todoList: this.state.todoList.concat(item),
+      },
+      () => {
+        // localStorageにtodoList stateを保存
+        localStorage.setItem("todoList", JSON.stringify(this.state.todoList));
+        // callBack関数が引数に渡されていた場合に実行
+        callBack && callBack();
+      }
+    );
+  }
+
+  // todoListからitemを削除
+  removeTodo(item, callBack) {
+    this.setState(
+      {
+        todoList: this.state.todoList.filter((x) => x !== item),
+      },
+      () => {
+        // localStorageにtodoList stateを保存
+        localStorage.setItem("todoList", JSON.stringify(this.state.todoList));
+
+        // callBack関数が引数に渡されていた場合に実行
+        callBack && callBack();
+      }
+    );
   }
 
   render() {
-    // setTimeout(() => {
-    //     this.setState({title: "After"});
-    // }, 5000);
-
-    // const title = "Welcom aaout";
-
     return (
       <div>
-        {/* <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title}/> */}
-        {/* <Header title={"title2"}/> */}
-        {/* {this.state.name} */}
-        <Header />
-        {/* <App /> */}
-        <LogForm />
-        {/* <Test /> */}
-        {/* <ChangeState /> */}
-        {/* <CheckBox /> */}
-        {/* <LoginButton /> */}
-        <Fooder />
+        <Test />
       </div>
     );
   }
