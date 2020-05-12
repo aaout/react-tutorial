@@ -49,19 +49,15 @@ export default class Login extends Component {
     e.preventDefault();
     // idがtitleのElementを取得
     const titleElement = e.target.elements["title"];
-    // idがdescriptionのElementを取得
-    const descriptionElement = e.target.elements["description"];
     const userimgElement = e.target.elements["userimg"];
     this.addTodo(
       {
         title: titleElement.value,
-        description: descriptionElement.value,
         userimg: userimgElement.value,
       },
       () => {
         // stateの変更後に入力した値を空にする
         titleElement.value = "";
-        descriptionElement.value = "";
       }
     );
   }
@@ -72,8 +68,6 @@ export default class Login extends Component {
         <form className="App-form" onSubmit={this.handleSubmit}>
           <div>
             <input id="title" placeholder="title" />
-            <br />
-            <textarea id="description" placeholder="description" />
             <select id="userimg">
               <option value="https://1.bp.blogspot.com/-Na00Q49BuPg/XJB5IFwcscI/AAAAAAABR8g/aWBDjkVwnHU2CVeLX2dgklqWQdz03DU4wCLcBGAs/s400/pistol_pose_man.png">
                 man1
