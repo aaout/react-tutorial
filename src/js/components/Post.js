@@ -5,33 +5,52 @@ export default class Post extends Component {
   constructor() {
     super();
     this.state = {
-      todoList: JSON.parse(localStorage.getItem("todoList")) || [],
+      userProps: JSON.parse(localStorage.getItem("userProps")) || [],
       postData: JSON.parse(localStorage.getItem("postData")) || [],
+      revewerImg: JSON.parse(localStorage.getItem("revewerImg")) || [],
+      revewerIndex: JSON.parse(localStorage.getItem("revewerIndex")) || [],
     };
     this.addTodo = this.addTodo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   addTodo(item, callBack) {
-    // todoList stateに追加
+    // userProps stateに追加
     this.setState(
       {
         postData: this.state.postData.concat(item),
       },
       () => {
-        // localStorageにtodoList stateを保存
+        // localStorageにuserProps stateを保存
         localStorage.setItem("postData", JSON.stringify(this.state.postData));
         // callBack関数が引数に渡されていた場合に実行
         callBack && callBack();
       }
     );
   }
+  // addrevewerImg(item, callBack) {
+  //   // todoList stateに追加
+  //   this.setState(
+  //     {
+  //       revewerImg: this.state.revewerImg.concat(item),
+  //     },
+  //     () => {
+  //       // localStorageにuserProps stateを保存
+  //       localStorage.setItem(
+  //         "revewerImg",
+  //         JSON.stringify(this.state.revewerImg)
+  //       );
+  //       // callBack関数が引数に渡されていた場合に実行
+  //       callBack && callBack();
+  //     }
+  //   );
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
-    // idがtitleのElementを取得
+    // 各idのElementを取得
     const revewerElement = e.target.elements["revewer"];
-    // idがdescriptionのElementを取得
     const reveweeElement = e.target.elements["revewee"];
     const revewElement = e.target.elements["revew"];
     this.addTodo(
@@ -47,18 +66,57 @@ export default class Post extends Component {
     );
   }
 
+  handleSelect(e) {
+    e.preventDefault();
+    const input = e.target.value;
+    const checkList = this.state.userProps.map((e) => e.title);
+    const userimg = this.state.userProps.map((item) => item.userimg);
+    for (let index = 0; index < checkList.length; index++) {
+      // const element = array[index];
+      if (checkList[index] === input) {
+        const inputimg = this.state.userProps[index];
+        // console.log();
+        this.setState(
+          {
+            revewerImg: userimg[index],
+            revewerIndex: index,
+          },
+          () => {
+            // localStorageにuserProps stateを保存
+            localStorage.setItem(
+              "revewerImg",
+              JSON.stringify(this.state.revewerImg)
+            );
+            localStorage.setItem(
+              "revewerIndex",
+              JSON.stringify(this.state.revewerIndex)
+            );
+          }
+        );
+      }
+    }
+  }
+
   render() {
-    const username = this.state.todoList.map((item) => item.title);
+    const username = this.state.userProps.map((item) => item.title);
     console.log(username);
 
     return (
       <div className="App">
         <form className="App-form" onSubmit={this.handleSubmit}>
-          <select id="revewer">
+          <h3>Revewer</h3>
+          <select id="revewer" onChange={this.handleSelect}>
             {username.map((name) => (
               <option key={name}>{name}</option>
             ))}
           </select>
+          <h4>
+            Good Point {this.state.userProps[this.state.revewerIndex].goodPoint}
+          </h4>
+          <img src={this.state.revewerImg} width="100" height="100" />
+          <br />
+
+          <h3>Revewee</h3>
           <select id="revewee">
             {username.map((name) => (
               <option key={name}>{name}</option>
@@ -70,9 +128,9 @@ export default class Post extends Component {
             rows="4"
             cols="40"
           />
-          <button type="submit">投稿</button>
+          <button type="submit">Post</button>
         </form>
-        {this.state.postData.map((data) => (
+        {this.state.postData.reverse().map((data) => (
           <PostItem
             key={data.revew}
             revewer={data.revewer}

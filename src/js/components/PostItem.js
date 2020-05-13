@@ -10,9 +10,10 @@ export default class PostItem extends Component {
 
     return (
       <div {...props}>
-        <div>{revewer}</div>
-        <div>{revewee}</div>
-        <div>{revew}</div>
+        <div>
+          {revewer}→{revewee}
+        </div>
+        <div>Content: {revew}</div>
         <br />
       </div>
     );

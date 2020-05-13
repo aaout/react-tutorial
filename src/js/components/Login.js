@@ -7,10 +7,12 @@ export default class Login extends Component {
     super();
     this.state = {
       todoList: JSON.parse(localStorage.getItem("todoList")) || [],
+      selectImg: JSON.parse(localStorage.getItem("selectImg")) || [],
     };
     this.addTodo = this.addTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   // todoList itemの追加
@@ -54,6 +56,7 @@ export default class Login extends Component {
       {
         title: titleElement.value,
         userimg: userimgElement.value,
+        goodPoint: 70,
       },
       () => {
         // stateの変更後に入力した値を空にする
@@ -62,13 +65,51 @@ export default class Login extends Component {
     );
   }
 
+  handleSelect(e) {
+    console.log(e.target.value);
+    this.setState(
+      {
+        selectImg: e.target.value,
+      },
+      () => {
+        // localStorageにtodoList stateを保存
+        localStorage.setItem("selectImg", JSON.stringify(this.state.selectImg));
+      }
+    );
+    // e.preventDefault();
+    // const input = e.target.value;
+    // // console.log(this.state.todoList);
+    // const checkList = this.state.todoList.map((e) => e.title);
+    // const userimg = this.state.todoList.map((item) => item.userimg);
+    // for (let index = 0; index < checkList.length; index++) {
+    //   // const element = array[index];
+    //   if (checkList[index] === input) {
+    //     const inputimg = this.state.todoList[index];
+    //     console.log(input);
+    //     this.setState(
+    //       {
+    //         selectImg: userimg[index],
+    //       },
+    // () => {
+    //   // localStorageにtodoList stateを保存
+    //   localStorage.setItem(
+    //     "selectImg",
+    //     JSON.stringify(this.state.selectImg)
+    //   );
+    // }
+    //     );
+    //   }
+    // }
+  }
+
   render() {
     return (
       <div className="App">
+        <h3>User Registration</h3>
         <form className="App-form" onSubmit={this.handleSubmit}>
           <div>
-            <input id="title" placeholder="title" />
-            <select id="userimg">
+            <input id="title" placeholder="user" />
+            <select id="userimg" onChange={this.handleSelect}>
               <option value="https://1.bp.blogspot.com/-Na00Q49BuPg/XJB5IFwcscI/AAAAAAABR8g/aWBDjkVwnHU2CVeLX2dgklqWQdz03DU4wCLcBGAs/s400/pistol_pose_man.png">
                 man1
               </option>
@@ -88,9 +129,10 @@ export default class Login extends Component {
                 woman3
               </option>
             </select>
+            <img src={this.state.selectImg} width="100" height="500" />
           </div>
           <div>
-            <button type="submit">登録</button>
+            <button type="submit">Entry</button>
           </div>
         </form>
         <div>
